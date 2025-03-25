@@ -1,7 +1,14 @@
+// Description: Configuration de l'application express
+
+//Importation des modules
 import express, { Application, Request, Response }  from "express";
 import helmet from 'helmet'
-import userRoutes from "../routes/user.routes";
 import cors from 'cors';
+
+// Routes
+import userRoutes from "../routes/user.routes";
+import todoRoutes from "../routes/todo.routes";
+
 // inference de type : lorsque le language devine le type d'une variable a partir du type de données qui sert a l'initialisation
 export const app: Application = express();
 import errorHandler from '../middlewares/error.middleware';
@@ -16,6 +23,7 @@ app.use(helmet())
 app.use(cors())
 app.use(express.json());
 app.use('/api/users', userRoutes);
+app.use('/api/todos', todoRoutes)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(errorHandler);
 
