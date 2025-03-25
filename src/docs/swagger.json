@@ -1,0 +1,74 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API RESTful Auth",
+      "version": "1.0.0",
+      "description": "API pour gérer l'inscription et la connexion des utilisateurs"
+    },
+    "paths": {
+      "/api/users/register": {
+        "post": {
+          "summary": "Créer un nouvel utilisateur",
+          "tags": ["User"],
+          "requestBody": {
+            "description": "Informations de l'utilisateur à enregistrer",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterDTO"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Utilisateur créé avec succès",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AuthResponse"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Email déjà utilisé"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "RegisterDTO": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "example": "test@example.com"
+            },
+            "password": {
+              "type": "string",
+              "example": "superSecret123"
+            }
+          },
+          "required": ["email", "password"]
+        },
+        "AuthResponse": {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "string",
+              "example": "660e9d40943b12a6bfae9f12"
+            },
+            "token": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+            }
+          }
+        }
+      }
+    }
+  }
+  
