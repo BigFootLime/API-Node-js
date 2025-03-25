@@ -4,11 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
-const app_1 = require("./app");
+const app_1 = require("./config/app");
+const db_1 = require("./config/db");
 dotenv_1.default.config();
-const PORT = process.env.PORT || 3000;
-app_1.app.listen(PORT, () => {
-    console.log(`🚀 Serveur démarré sur http://localhost:${PORT}`);
-}).on('error', (error) => {
-    throw new Error(error.message);
+const PORT = process.env.PORT || 5000;
+(0, db_1.connectDB)().then(() => {
+    app_1.app.listen(PORT, () => {
+        console.log(`🚀 Server running on http://localhost:${PORT}`);
+    });
+}).catch((err) => {
+    console.error('❌ Error starting server:', err);
 });

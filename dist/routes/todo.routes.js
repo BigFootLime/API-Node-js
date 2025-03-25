@@ -1,21 +1,17 @@
-import { Router } from 'express'
-import { TodoController } from '../controllers/todo.controller'
-import { validate } from '../middlewares/validation.middleware'
-import { CreateTodoSchema, UpdateTodoSchema } from '../types/validators/todo.schema'
-
-// Create a new router
-const router = Router()
-
-// Create a new instance of the TodoController
-const todoController = new TodoController()
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const todo_controller_1 = require("../controllers/todo.controller");
+const validation_middleware_1 = require("../middlewares/validation.middleware");
+const todo_schema_1 = require("../types/validators/todo.schema");
+const router = (0, express_1.Router)();
+const todoController = new todo_controller_1.TodoController();
 /**
  * @swagger
  * tags:
  *   name: Todos
  *   description: API for managing todo tasks
  */
-
 /**
  * @swagger
  * /todos:
@@ -32,8 +28,7 @@ const todoController = new TodoController()
  *               items:
  *                 $ref: '#/components/schemas/Todo'
  */
-router.get('/', todoController.getAllTodos)
-
+router.get('/', todoController.getAllTodos);
 /**
  * @swagger
  * /todos/{id}:
@@ -57,8 +52,7 @@ router.get('/', todoController.getAllTodos)
  *       404:
  *         description: Todo not found
  */
-router.get('/:id', todoController.getTodoById)
-
+router.get('/:id', todoController.getTodoById);
 /**
  * @swagger
  * /todos:
@@ -79,8 +73,7 @@ router.get('/:id', todoController.getTodoById)
  *             schema:
  *               $ref: '#/components/schemas/Todo'
  */
-router.post('/', validate(CreateTodoSchema), todoController.createTodo)
-
+router.post('/', (0, validation_middleware_1.validate)(todo_schema_1.CreateTodoSchema), todoController.createTodo);
 /**
  * @swagger
  * /todos/{id}:
@@ -110,8 +103,7 @@ router.post('/', validate(CreateTodoSchema), todoController.createTodo)
  *       404:
  *         description: Todo not found
  */
-router.patch('/:id', validate(UpdateTodoSchema), todoController.updateTodo)
-
+router.patch('/:id', (0, validation_middleware_1.validate)(todo_schema_1.UpdateTodoSchema), todoController.updateTodo);
 /**
  * @swagger
  * /todos/{id}/toggle:
@@ -135,8 +127,7 @@ router.patch('/:id', validate(UpdateTodoSchema), todoController.updateTodo)
  *       404:
  *         description: Todo not found
  */
-router.patch('/:id/toggle', todoController.toggleTodoCompleted)
-
+router.patch('/:id/toggle', todoController.toggleTodoCompleted);
 /**
  * @swagger
  * /todos/{id}:
@@ -156,6 +147,5 @@ router.patch('/:id/toggle', todoController.toggleTodoCompleted)
  *       404:
  *         description: Todo not found
  */
-router.delete('/:id', todoController.deleteTodo)
-
-export default router
+router.delete('/:id', todoController.deleteTodo);
+exports.default = router;

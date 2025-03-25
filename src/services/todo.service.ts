@@ -1,3 +1,5 @@
+
+
 import { ITodo, Priority } from '../models/todo.model'
 import { CreateTodoDto, UpdateTodoDto } from '../types/todo.types'
 import { TodoRepository } from '../repositories/todo.repository'
@@ -10,6 +12,7 @@ export class TodoService {
         this.todoRepository = new TodoRepository()
     }
 
+      // Récupère toutes les tâches, avec filtres possibles (completed, priority)
     async findAll(filter?: Partial<{ completed: boolean; priority: Priority }>): Promise<ITodo[]> {
         if (filter?.completed !== undefined) {
             return this.todoRepository.findByStatus(filter.completed)
@@ -19,7 +22,7 @@ export class TodoService {
           }
           return this.todoRepository.findAll()
     }
-
+// Récupère une tâche par ID
     async findOne(id: string): Promise<ITodo> {
         const todo = await this.todoRepository.findById(id)
         if (!todo) {
@@ -36,6 +39,7 @@ export class TodoService {
         return todo
     }
 
+     // Crée une nouvelle tâche
     async create(data: CreateTodoDto): Promise<ITodo> {
         return this.todoRepository.create({
             ...data,
@@ -45,6 +49,7 @@ export class TodoService {
         })
     }
 
+     // Met à jour une tâche existante
     async update(id: string, data: UpdateTodoDto): Promise<ITodo> {
         const updated = await this.todoRepository.update(id, {
             ...data,
@@ -56,6 +61,7 @@ export class TodoService {
         return updated
     }
 
+    // Supprime une tâche
     async delete(id: string): Promise<boolean> {
         const deleted = await this.todoRepository.delete(id)
         if (!deleted) {
@@ -64,6 +70,7 @@ export class TodoService {
         return deleted
     }
 
+     // Inverse le statut "completed" d'une tâche
     async toggleCompleted(id: string): Promise<ITodo> {
         const todo = await this.findById(id)
         return this.update(id, { completed: !todo.completed })

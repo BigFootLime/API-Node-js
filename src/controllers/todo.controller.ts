@@ -1,3 +1,7 @@
+// This file is the controller for the todo resource
+// It imports the TodoService and the types for the todo resource
+// It exports a class with methods to handle requests for the todo resource
+
 import {Request, Response} from 'express';
 import { TodoService } from '../services/todo.service';
 import { CreateTodoDto, UpdateTodoDto } from '../types/todo.types';

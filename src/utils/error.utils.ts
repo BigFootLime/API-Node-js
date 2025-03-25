@@ -1,3 +1,7 @@
+// Purpose: Error handling utilities.
+
+// As you can see, the snippet is a set of utility functions for error handling.
+//  The AppError class is a custom error class that extends the built-in Error class.
 export class AppError extends Error {
   public readonly statusCode: number
   public readonly isOperational: boolean

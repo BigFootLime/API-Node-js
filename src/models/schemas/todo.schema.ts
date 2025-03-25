@@ -1,6 +1,9 @@
+// This file is a schema for the todo resource. It imports the mongoose module and the TodoDocument type from the todo model
+
 import mongoose, {Schema} from 'mongoose';
 import {Priority, TodoDocument} from '../todo.model';
 
+// Schema
 const TodoSchema: Schema<TodoDocument> = new Schema({
     title: { type: String, required: true },
     description: { type: String },

@@ -1,13 +1,17 @@
+// Purpose: Define the Todo interface and the TodoDocument interface.
+// The Todo interface defines the structure of a todo object.
+
 import { Document } from "mongoose";
 
-// Enumerate the priorities
+// Defines the Priority enum
+// This enum defines the priority levels for a todo
 export enum Priority {
   LOW = 'low',
   MEDIUM = 'medium',
   HIGH = 'high'
 }
 
-// Define the Todo interface
+// Defines the Todo interface
 export interface ITodo {
     id?: string
     title: string

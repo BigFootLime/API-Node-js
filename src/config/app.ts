@@ -1,4 +1,6 @@
-// Description: Configuration de l'application express
+// This file is used to configure the express application
+// It imports the express module and the todoRoutes
+// It also configures the middlewares and the routes
 
 //Importation des modules
 import express, { Application, Request, Response }  from "express";
@@ -6,14 +8,13 @@ import helmet from 'helmet'
 import cors from 'cors';
 
 // Routes
-import userRoutes from "../routes/user.routes";
 import todoRoutes from "../routes/todo.routes";
 
 // inference de type : lorsque le language devine le type d'une variable a partir du type de données qui sert a l'initialisation
 export const app: Application = express();
 import errorHandler from '../middlewares/error.middleware';
 import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from '../docs/swagger.json';
+import { swaggerSpec } from '../docs/swagger'
 
 
 // Middlewares
@@ -22,9 +23,8 @@ app.use(helmet())
 //Partage des ressources (cors)
 app.use(cors())
 app.use(express.json());
-app.use('/api/users', userRoutes);
 app.use('/api/todos', todoRoutes)
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 app.use(errorHandler);
 
 // Routes
@@ -33,6 +33,12 @@ app.get('/', (req: Request, res: Response) => {
     res.status(200).json('Bienvenue sur mon API Express avec TypeScript ✨' );
 
 });
+
+app.get('/api-docs-json', (_req, res) => {
+    res.setHeader('Content-Type', 'application/json')
+    res.send(swaggerSpec)
+  })
+  
 
 
 

@@ -1,3 +1,5 @@
+// This file contains the DTO definitions for the Todo entity
+
 import {Priority} from '../models/todo.model';
 
 // DTO definition for the creation of a new Todo
