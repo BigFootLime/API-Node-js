@@ -9,6 +9,7 @@ import cors from 'cors';
 
 // Routes
 import todoRoutes from "../routes/todo.routes";
+import authRoutes from "../routes/auth.routes";
 
 // inference de type : lorsque le language devine le type d'une variable a partir du type de données qui sert a l'initialisation
 export const app: Application = express();
@@ -23,6 +24,7 @@ app.use(helmet())
 //Partage des ressources (cors)
 app.use(cors())
 app.use(express.json());
+app.use('/api/auth', authRoutes)
 app.use('/api/todos', todoRoutes)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 app.use(errorHandler);
