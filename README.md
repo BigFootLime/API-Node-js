@@ -236,14 +236,14 @@ components: {
 
 ## 📸 Captures d’écran importantes
 
-🟢 Middleware Zod générique :
-![Middleware Zod](./screens/validationMiddleware.png)
+🟢 Exemple d'une requete GET Postman :
+![Postman](/public/images/Postman-image-for-documentation.png)
 
 🟢 Swagger UI :
-![Swagger UI](./screens/swagger-ui.png)
+![Swagger UI](/public/images/SwaggerUI.png)
 
-🟢 Exemple d’interface TS `Readonly` :
-![Readonly TypeScript](./screens/readonly-example.png)
+🟢 Exemple d’interface TS :
+![Readonly TypeScript](/public/images/TodoModel.png)
 
 ---
 
@@ -258,6 +258,7 @@ components: {
 - https://www.premieroctet.com/blog/zod-et-les-validateurs
 - https://swagger.io/docs/open-source-tools/swagger-ui/usage/oauth2/
 - https://aws.amazon.com/what-is/restful-api/#:~:text=RESTful%20API%20is%20an%20interface,applications%20to%20perform%20various%20tasks.
+- https://www.npmjs.com/package/cors#installation
 
 ---
 
