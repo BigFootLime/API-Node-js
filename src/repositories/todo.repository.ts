@@ -8,7 +8,7 @@ export class TodoRepository extends MongooseRepository<ITodo, TodoDocument> {
     super(TodoModel)
   }
 
-  // 🎯 Conversion Document Mongoose vers ITodo
+  // Conversion Document Mongoose vers ITodo
   protected mapToEntity(doc: TodoDocument): ITodo {
     const { _id, ...rest } = doc.toObject()
     return {
@@ -17,13 +17,13 @@ export class TodoRepository extends MongooseRepository<ITodo, TodoDocument> {
     }
   }
 
-  // 🔍 Trouver par statut
+  // Trouver par statut
   async findByStatus(completed: boolean): Promise<ITodo[]> {
     const docs = await this.model.find({ completed }).exec()
     return docs.map((doc) => this.mapToEntity(doc))
   }
 
-  // 🔍 Trouver par priorité
+  // Trouver par priorité
   async findByPriority(priority: Priority): Promise<ITodo[]> {
     const docs = await this.model.find({ priority }).exec()
     return docs.map((doc) => this.mapToEntity(doc))
