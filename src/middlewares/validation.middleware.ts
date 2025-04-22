@@ -18,3 +18,32 @@ export const validate = (schema: ZodSchema) => {
         }
     };
     }
+
+    export const validateParams = (schema: ZodSchema) => {
+        return (req: Request, res: Response, next: NextFunction): void => {
+          try {
+            schema.parse(req.params)
+            next()
+          } catch (error: any) {
+            res.status(400).json({
+              error: true,
+              message: error.errors?.map((e: any) => e.message).join(', '),
+            })
+          }
+        }
+      }
+
+      export const validateQuery = (schema: ZodSchema) => {
+        return (req: Request, res: Response, next: NextFunction): void => {
+          try {
+            schema.parse(req.query)
+            next()
+          } catch (error: any) {
+            res.status(400).json({
+              error: true,
+              message: error.errors?.map((e: any) => e.message).join(', '),
+            })
+          }
+        }
+      }
+        

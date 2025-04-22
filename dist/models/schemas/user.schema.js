@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserModel = void 0;
-// src/models/schemas/user.schema.ts
+// 📁 src/models/schemas/user.schema.ts
 const mongoose_1 = require("mongoose");
 const bcrypt_ts_1 = __importDefault(require("bcrypt-ts"));
 const userSchema = new mongoose_1.Schema({
@@ -27,11 +27,13 @@ const userSchema = new mongoose_1.Schema({
     departement: { type: String, required: false },
     role: {
         type: String,
-        enum: ['user', 'admin'],
+        enum: ['user', 'admin', 'viewer'],
         default: 'user',
     },
     lastLogin: { type: Date, default: null },
     isActive: { type: Boolean, default: true },
+    totpSecret: { type: String, required: false },
+    twoFactorEnabled: { type: Boolean, default: false },
 }, { timestamps: true });
 // Hash du mot de passe avant enregistrement
 userSchema.pre('save', function (next) {

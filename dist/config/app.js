@@ -14,6 +14,10 @@ const cors_1 = __importDefault(require("cors"));
 // Routes
 const todo_routes_1 = __importDefault(require("../routes/todo.routes"));
 const auth_routes_1 = __importDefault(require("../routes/auth.routes"));
+const vault_routes_1 = __importDefault(require("../routes/vault.routes"));
+const session_routes_1 = __importDefault(require("../routes/session.routes"));
+const vaultItem_routes_1 = __importDefault(require("../routes/vaultItem.routes"));
+const auditLog_routes_1 = __importDefault(require("../routes/auditLog.routes"));
 // inference de type : lorsque le language devine le type d'une variable a partir du type de données qui sert a l'initialisation
 exports.app = (0, express_1.default)();
 const error_middleware_1 = __importDefault(require("../middlewares/error.middleware"));
@@ -29,6 +33,10 @@ exports.app.use((0, cors_1.default)({
 }));
 exports.app.use(express_1.default.json());
 exports.app.use('/api/auth', auth_routes_1.default);
+exports.app.use('/api/vaults', vault_routes_1.default);
+exports.app.use('/api/sessions', session_routes_1.default);
+exports.app.use('/api/vault-items', vaultItem_routes_1.default);
+exports.app.use('/api/audit-logs', auditLog_routes_1.default);
 exports.app.use('/api/todos', todo_routes_1.default);
 exports.app.use('/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_1.swaggerSpec));
 exports.app.use(error_middleware_1.default);

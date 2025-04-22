@@ -1,6 +1,6 @@
-// src/models/user.model.ts
-import { UserModel as UserMongooseModel } from './schemas/user.schema';
-import { User } from '../types/user.types';
+// 📁 src/models/user.model.ts
+import { UserModel as UserMongooseModel } from './schemas/user.schema'
+import { User } from '../types/user.types'
 
 /**
  * Fonction utilitaire pour convertir un document Mongoose en objet User
@@ -19,7 +19,9 @@ export const mapToUser = (doc: any): User => ({
   phone_number: doc.phone_number,
   departement: doc.departement,
   role: doc.role,
-});
+  totpSecret: doc.totpSecret,
+  twoFactorEnabled: doc.twoFactorEnabled,
+})
 
 // Export direct du modèle Mongoose
-export const UserModel = UserMongooseModel;
+export const UserModel = UserMongooseModel

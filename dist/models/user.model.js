@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserModel = exports.mapToUser = void 0;
-// src/models/user.model.ts
+// 📁 src/models/user.model.ts
 const user_schema_1 = require("./schemas/user.schema");
 /**
  * Fonction utilitaire pour convertir un document Mongoose en objet User
@@ -20,6 +20,8 @@ const mapToUser = (doc) => ({
     phone_number: doc.phone_number,
     departement: doc.departement,
     role: doc.role,
+    totpSecret: doc.totpSecret,
+    twoFactorEnabled: doc.twoFactorEnabled,
 });
 exports.mapToUser = mapToUser;
 // Export direct du modèle Mongoose

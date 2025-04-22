@@ -1,6 +1,6 @@
-// src/models/schemas/user.schema.ts
-import { Schema, model } from 'mongoose';
-import bcrypt from 'bcrypt-ts';
+// 📁 src/models/schemas/user.schema.ts
+import { Schema, model } from 'mongoose'
+import bcrypt from 'bcrypt-ts'
 
 const userSchema = new Schema(
   {
@@ -14,20 +14,22 @@ const userSchema = new Schema(
     departement: { type: String, required: false },
     role: {
       type: String,
-      enum: ['user', 'admin'],
+      enum: ['user', 'admin', 'viewer'],
       default: 'user',
     },
     lastLogin: { type: Date, default: null },
     isActive: { type: Boolean, default: true },
+    totpSecret: { type: String, required: false },
+    twoFactorEnabled: { type: Boolean, default: false },
   },
   { timestamps: true }
-);
+)
 
 // Hash du mot de passe avant enregistrement
 userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next();
-  this.password = await bcrypt.hash(this.password, 10);
-  next();
-});
+  if (!this.isModified('password')) return next()
+  this.password = await bcrypt.hash(this.password, 10)
+  next()
+})
 
-export const UserModel = model('User', userSchema);
+export const UserModel = model('User', userSchema)
