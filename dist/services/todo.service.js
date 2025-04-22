@@ -16,6 +16,7 @@ class TodoService {
     constructor() {
         this.todoRepository = new todo_repository_1.TodoRepository();
     }
+    // Récupère toutes les tâches, avec filtres possibles (completed, priority)
     findAll(filter) {
         return __awaiter(this, void 0, void 0, function* () {
             if ((filter === null || filter === void 0 ? void 0 : filter.completed) !== undefined) {
@@ -27,6 +28,7 @@ class TodoService {
             return this.todoRepository.findAll();
         });
     }
+    // Récupère une tâche par ID
     findOne(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const todo = yield this.todoRepository.findById(id);
@@ -45,11 +47,13 @@ class TodoService {
             return todo;
         });
     }
+    // Crée une nouvelle tâche
     create(data) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.todoRepository.create(Object.assign(Object.assign({}, data), { completed: false, createdAt: new Date(), updatedAt: new Date() }));
         });
     }
+    // Met à jour une tâche existante
     update(id, data) {
         return __awaiter(this, void 0, void 0, function* () {
             const updated = yield this.todoRepository.update(id, Object.assign(Object.assign({}, data), { updatedAt: new Date() }));
@@ -59,6 +63,7 @@ class TodoService {
             return updated;
         });
     }
+    // Supprime une tâche
     delete(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const deleted = yield this.todoRepository.delete(id);
@@ -68,6 +73,7 @@ class TodoService {
             return deleted;
         });
     }
+    // Inverse le statut "completed" d'une tâche
     toggleCompleted(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const todo = yield this.findById(id);

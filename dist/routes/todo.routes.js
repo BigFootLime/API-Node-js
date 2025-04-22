@@ -4,7 +4,9 @@ const express_1 = require("express");
 const todo_controller_1 = require("../controllers/todo.controller");
 const validation_middleware_1 = require("../middlewares/validation.middleware");
 const todo_schema_1 = require("../types/validators/todo.schema");
+// Create a new router
 const router = (0, express_1.Router)();
+// Create a new instance of the TodoController
 const todoController = new todo_controller_1.TodoController();
 /**
  * @swagger

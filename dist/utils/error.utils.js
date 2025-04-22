@@ -1,6 +1,9 @@
 "use strict";
+// Purpose: Error handling utilities.
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NotFoundError = exports.AppError = void 0;
+// As you can see, the snippet is a set of utility functions for error handling.
+//  The AppError class is a custom error class that extends the built-in Error class.
 class AppError extends Error {
     constructor(message, statusCode = 500, isOperational = true) {
         super(message);

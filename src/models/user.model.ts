@@ -14,6 +14,11 @@ export const mapToUser = (doc: any): User => ({
   email: doc.email,
   createdAt: doc.createdAt,
   updatedAt: doc.updatedAt,
+  lastLogin: doc.lastLogin,
+  isActive: doc.isActive,
+  phone_number: doc.phone_number,
+  departement: doc.departement,
+  role: doc.role,
 });
 
 // Export direct du modèle Mongoose

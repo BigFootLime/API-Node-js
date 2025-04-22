@@ -1,4 +1,5 @@
 "use strict";
+// This file is a schema for the todo resource. It imports the mongoose module and the TodoDocument type from the todo model
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -36,6 +37,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TodoModel = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
 const todo_model_1 = require("../todo.model");
+// Schema
 const TodoSchema = new mongoose_1.Schema({
     title: { type: String, required: true },
     description: { type: String },

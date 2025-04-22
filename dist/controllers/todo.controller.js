@@ -1,4 +1,7 @@
 "use strict";
+// This file is the controller for the todo resource
+// It imports the TodoService and the types for the todo resource
+// It exports a class with methods to handle requests for the todo resource
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {

@@ -29,6 +29,7 @@ class TodoRepository extends mongoose_repository_1.MongooseRepository {
     }
     // Conversion Document Mongoose vers ITodo
     mapToEntity(doc) {
+        // Ici on utilise la méthode toObject() pour convertir le document Mongoose en objet JS
         const _a = doc.toObject(), { _id } = _a, rest = __rest(_a, ["_id"]);
         return Object.assign({ id: _id.toString() }, rest);
     }

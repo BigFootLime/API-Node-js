@@ -22,7 +22,10 @@ import { swaggerSpec } from '../docs/swagger'
 // Sécurité avec helmet
 app.use(helmet())
 //Partage des ressources (cors)
-app.use(cors())
+app.use(cors({
+    origin: "http://localhost:5173", // frontend origin
+    credentials: true,
+  }))
 app.use(express.json());
 app.use('/api/auth', authRoutes)
 app.use('/api/todos', todoRoutes)

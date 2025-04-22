@@ -1,4 +1,7 @@
 "use strict";
+// Desc: Entry point for the server
+// Importing the app from the config folder and starting the server
+// Also connecting to the database
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
