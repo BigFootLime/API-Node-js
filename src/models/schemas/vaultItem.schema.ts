@@ -12,11 +12,14 @@ const vaultItemSchema = new Schema(
     },
     encryptedData: { type: String, required: true },
     createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    loginCount: { type: Number, default: 0 },
+    passwordChangeCount: { type: Number, default: 0 },
     isDeleted: { type: Boolean, default: false },
   },
   {
     timestamps: true,
   }
 )
+
 
 export const VaultItemModel = model('VaultItem', vaultItemSchema)

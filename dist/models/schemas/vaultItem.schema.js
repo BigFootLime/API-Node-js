@@ -13,6 +13,8 @@ const vaultItemSchema = new mongoose_1.Schema({
     },
     encryptedData: { type: String, required: true },
     createdBy: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User', required: true },
+    loginCount: { type: Number, default: 0 },
+    passwordChangeCount: { type: Number, default: 0 },
     isDeleted: { type: Boolean, default: false },
 }, {
     timestamps: true,
