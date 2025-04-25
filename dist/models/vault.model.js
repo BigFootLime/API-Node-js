@@ -7,6 +7,7 @@ const vaultSchema = new mongoose_1.Schema({
     name: { type: String, required: true },
     owner: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User', required: true },
     members: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'User' }],
+    masterPassword: { type: String, required: true },
     isDeleted: { type: Boolean, default: false },
 }, {
     timestamps: true,

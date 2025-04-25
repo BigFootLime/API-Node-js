@@ -77,5 +77,10 @@ class VaultItemService {
             return true;
         });
     }
+    getItemsByVault(vaultId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return vaultItem_model_1.VaultItemModel.find({ vault: vaultId }).lean();
+        });
+    }
 }
 exports.VaultItemService = VaultItemService;

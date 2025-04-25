@@ -8,12 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VaultService = void 0;
 // 📁 src/services/vault.service.ts
 const vault_model_1 = require("../models/vault.model");
-const error_utils_1 = require("../utils/error.utils");
 const logger_service_1 = require("./logger.service");
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const error_utils_1 = require("../utils/error.utils");
 class VaultService {
     constructor() {
         this.logger = new logger_service_1.LoggerService();
@@ -70,6 +74,17 @@ class VaultService {
                 resourceId: id,
             });
             return true;
+        });
+    }
+    verifyVaultPassword(vaultId, password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const vault = yield vault_model_1.VaultModel.findById(vaultId);
+            if (!vault)
+                throw new error_utils_1.NotFoundError('Vault not found');
+            const isValid = yield bcryptjs_1.default.compare(password, vault.masterPassword);
+            if (!isValid)
+                throw new error_utils_1.NotFoundError('Mot de passe maître incorrect');
+            return { success: true };
         });
     }
 }

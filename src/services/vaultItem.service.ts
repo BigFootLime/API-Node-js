@@ -69,4 +69,7 @@ export class VaultItemService {
 
     return true
   }
+  async getItemsByVault(vaultId: string): Promise<IVaultItem[]> {
+    return VaultItemModel.find({ vault: vaultId }).lean()
+  }
 }

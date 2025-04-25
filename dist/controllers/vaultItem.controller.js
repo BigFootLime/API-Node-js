@@ -13,6 +13,18 @@ exports.VaultItemController = void 0;
 const vaultItem_service_1 = require("../services/vaultItem.service");
 const service = new vaultItem_service_1.VaultItemService();
 class VaultItemController {
+    constructor() {
+        this.getAllItemsForVault = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const vaultId = req.query.vaultId;
+            const items = yield service.getItemsByVault(vaultId);
+            res.status(200).json(items);
+        });
+        // async delete(req: Request, res: Response) {
+        //   const { id } = req.params
+        //   await service.delete(id)
+        //   res.status(204).send()
+        // }
+    }
     getAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const items = yield service.findAll();

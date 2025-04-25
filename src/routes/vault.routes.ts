@@ -12,6 +12,8 @@ router.get('/', requireAuth, controller.getAll)
 router.get('/:id', requireAuth, controller.getById)
 router.post('/', requireAuth, validate(CreateVaultSchema), controller.create)
 router.put('/:id', requireAuth, validate(UpdateVaultSchema), controller.update)
+
+
 // router.delete('/:id', requireAuth, controller.delete)
 
 export default router

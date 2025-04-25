@@ -26,6 +26,7 @@ export class VaultController {
     const vault = await vaultService.update(id, req.body)
     res.status(200).json(vault)
   }
+  
 
   // async delete(req: Request, res: Response) {
   //   const { id } = req.params

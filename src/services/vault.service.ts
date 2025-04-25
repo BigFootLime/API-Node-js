@@ -1,9 +1,10 @@
 // 📁 src/services/vault.service.ts
 import { VaultModel, IVault } from '../models/vault.model'
 import { CreateVaultInput, UpdateVaultInput } from '../types/validators/vault.schema'
-import { NotFoundError } from '../utils/error.utils'
 import { LoggerService } from './logger.service'
 import { Types } from 'mongoose'
+import bcrypt from 'bcryptjs'
+import { NotFoundError } from '../utils/error.utils'
 
 export class VaultService {
   private readonly logger = new LoggerService()
@@ -66,4 +67,16 @@ export class VaultService {
 
     return true
   }
+
+  async verifyVaultPassword(vaultId: string, password: string): Promise<{ success: boolean }> {
+    const vault = await VaultModel.findById(vaultId)
+    if (!vault) throw new NotFoundError('Vault not found')
+
+    const isValid = await bcrypt.compare(password, vault.masterPassword)
+    if (!isValid) throw new NotFoundError('Mot de passe maître incorrect')
+
+    return { success: true }
+  }
+
+  
 }
